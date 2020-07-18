@@ -1,0 +1,74 @@
+
+.book-card {
+    border: solid 1px #bbb;
+    background-color: white;
+    padding: 1%;
+    flex-grow: 1;
+    flex-basis: 25%;
+    display: flex;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    flex-direction: column;
+    min-height: 340px;
+    margin-left: -1px;
+    margin-top: -1px;
+    margin-bottom: -1px;
+    border: 1px solid rgb(230, 230, 230);
+    min-width: 250px;
+    transition: all 0.3s ease ;
+    animation: book-card-animation;
+     animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards; 
+    &:hover{
+        -webkit-box-shadow: 0 2px 17px 0 rgba(0, 0, 0, 0.13);
+        box-shadow: 0 2px 17px 0 rgba(0, 0, 0, 0.13);
+        z-index: 11;
+    }
+    .book-cover-container{
+        flex:1;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        .book-cover{
+            width: 128px;
+            height: 169px;
+        }
+    }
+    .bookTitle{
+        font-weight: 300;
+        font-size: 14px;
+        display: block;
+        height: 45px;
+        margin: 3px 0;
+        overflow: auto;
+    }
+    .book-details {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: flex-start;
+        .book-author {
+            flex: 8;
+            font-size: 12px;
+            font-weight: normal;
+            color: #999;
+            line-height: 12px;
+            margin: 5px 0px;
+            height: 30px;
+            overflow: auto;
+        }
+        .book-pages {
+            flex: 1;
+            line-height: 2.2em;
+            font-size: 12px;
+            font-weight: normal;
+            color: #999;
+            line-height: 30px;
+            margin: 5px 0px;
+            text-align: center;
+        }
+        
+    }
+
+}

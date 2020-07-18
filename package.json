@@ -13,12 +13,14 @@
   "dependencies": {
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts-scss-ts": "^2.17.1"
+    "react-scripts-scss-ts": "^2.17.1",
+    "react-superagent": "^1.1.1"
   },
   "devDependencies": {
     "@types/html-webpack-plugin": "^3.2.3",
     "@types/react": "^16.9.43",
     "@types/react-dom": "^16.9.8",
+    "@types/superagent": "^4.1.8",
     "@types/webpack": "^4.41.21",
     "awesome-typescript-loader": "^5.2.1",
     "html-webpack-plugin": "^4.3.0",
