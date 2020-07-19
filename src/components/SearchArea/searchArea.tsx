@@ -4,12 +4,13 @@ import BookList from '../BookList/bookList';
 import LoadingSpinner from '../LoadingSpiner/loadingSpiner'
 
 
-interface MainProps{}
+interface MainProps { }
 interface State {
     bookList: Array<bookVolume>,
     searchFiled: string,
     isLoading: boolean,
-    maxResult: number
+    maxResult: number,
+    firstLoading: boolean
 };
 export default class SearchArea extends React.Component<MainProps, State> {
 
@@ -17,14 +18,15 @@ export default class SearchArea extends React.Component<MainProps, State> {
         bookList: [],
         searchFiled: '',
         isLoading: false,
-        maxResult: 10
+        maxResult: 20,
+        firstLoading: true
     };
 
-    constructor(props:MainProps) {
+    constructor(props: MainProps) {
         super(props)
-        // this.handleSearch = this.handleSearch.bind(this);
-        // this.searchBook = this.searchBook.bind(this);
-      }
+        this.handleSearch = this.handleSearch.bind(this);
+        this.searchBook = this.searchBook.bind(this);
+    }
 
     async getBooksFromGoogle() {
         const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.state.searchFiled}&maxResults=${this.state.maxResult}`);
@@ -34,24 +36,25 @@ export default class SearchArea extends React.Component<MainProps, State> {
 
 
     searchBook = async (e: React.FormEvent<HTMLFormElement>) => {
-       
+
         e.preventDefault();
-        let tempArr:Array<bookVolume>;
-        tempArr=[];
-        this.setState({isLoading:true});
-        this.setState({bookList:[]});
+        let tempArr: Array<bookVolume>;
+        tempArr = [];
+        this.setState({ firstLoading: false });
+        this.setState({ isLoading: true });
+        this.setState({ bookList: [] });
         if (this.state.searchFiled.trim() != '') {
             await this.getBooksFromGoogle()
-                .then(result => {   
+                .then(result => {
                     result.items.forEach((item: any) => {
                         tempArr.push({
-                            title:  item.volumeInfo.title!= null && item.volumeInfo.title.length ? item.volumeInfo.title : "no-Tile",
-                            imageUrl: item.volumeInfo.imageLinks!= null ? item.volumeInfo.imageLinks.thumbnail : "./src/img/no-image.png",
-                            pageCount: item.volumeInfo.pageCount!= null ? item.volumeInfo.pageCount : "#0",
-                            author: item.volumeInfo.authors!= null && item.volumeInfo.authors.length ? item.volumeInfo.authors[0] : "no-author"
+                            title: item.volumeInfo.title != null && item.volumeInfo.title.length ? item.volumeInfo.title : "no-Tile",
+                            imageUrl: item.volumeInfo.imageLinks != null ? item.volumeInfo.imageLinks.thumbnail : "./src/img/no-image.png",
+                            pageCount: item.volumeInfo.pageCount != null ? item.volumeInfo.pageCount : "#0",
+                            author: item.volumeInfo.authors != null && item.volumeInfo.authors.length ? item.volumeInfo.authors[0] : "no-author"
                         })
                     })
-                    this.setState({bookList:tempArr})
+                    this.setState({ bookList: tempArr })
                 })
                 .catch(error => {
                     console.log('Error on GoogleApi response!');
@@ -60,7 +63,7 @@ export default class SearchArea extends React.Component<MainProps, State> {
         } else {
             console.log("search term is null")
         }
-        this.setState({isLoading:false});
+        this.setState({ isLoading: false });
     }
 
     handleSearch = (e: React.FormEvent<HTMLInputElement>) => {
@@ -70,16 +73,28 @@ export default class SearchArea extends React.Component<MainProps, State> {
     render() {
         return (
             <div>
-                <section className="search-area">
-                    <div className="search-input-container">
-                        <form onSubmit={this.searchBook} action="">
+                <form onSubmit={this.searchBook} action="">
+                    <section className="search-area">
+                        <div className="search-input-container">
                             <input onChange={this.handleSearch} id="searchInput" className="search-input" placeholder="Find book ..." type="text" />
                             <button className="search-btn" disabled={this.state.isLoading} type="submit">Find</button>
-                        </form>
-                    </div>
-                </section>
+                        </div>
+                    </section>
+                </form>
                 <div className="main-area">
-                    {this.state.isLoading ? <LoadingSpinner/> : <BookList bookListProps={this.state.bookList} />}
+                    {
+                        this.state.firstLoading
+                            ?
+                            <p className="msg-container">Hey guys!  It's time to reading. Go ahead and find your favorite books... :)</p>
+                            :
+                            this.state.searchFiled!=""?
+                                                       this.state.isLoading ? 
+                                                                            <LoadingSpinner /> 
+                                                                            : 
+                                                                            <BookList bookListProps={this.state.bookList} />
+                                                       :
+                                                       <p className="msg-container">Please Enter Book Name,Author,...</p>
+                    }
                 </div>
             </div>
         )
