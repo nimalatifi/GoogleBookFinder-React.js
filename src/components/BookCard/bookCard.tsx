@@ -1,4 +1,5 @@
 import * as React from 'react'
+import "./bookCard.scss";
 interface Props{
     title: string;
     imageUrl: string;

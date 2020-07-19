@@ -72,3 +72,23 @@
     }
 
 }
+
+
+/*** end animation ***/
+@media (max-width: 920px) {
+    .container .book-list .book-card {
+        flex-basis: 20%;
+    }
+}
+
+@media (max-width: 600px) {
+    .container .book-list .book-card {
+        flex-basis: 50%;
+    }
+}
+
+@media (max-width: 400px) {
+    .container .book-list .book-card {
+        flex-basis: 100%;
+    }
+}
