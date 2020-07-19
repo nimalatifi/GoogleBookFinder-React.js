@@ -32,7 +32,8 @@ const config: webpack.Configuration = {
       }
     ]
   },
-  plugins: [htmlPlugin]
+  plugins: [htmlPlugin],
+  devtool: 'source-map'
 };
 
 export default config;
