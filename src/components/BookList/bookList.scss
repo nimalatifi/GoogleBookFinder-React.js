@@ -16,11 +16,7 @@
      .result-container{
          @include flex-center-column();
          z-index: 0;
-         .msg-container{
-             display: flex;
-             flex-direction: row;
-             font-size: larger;
-         }
+
          
       }
 

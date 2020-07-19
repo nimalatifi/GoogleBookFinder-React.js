@@ -1,26 +1,31 @@
+.msg-container {
+    display: flex;
+    flex-direction: row;
+    font-size: larger;
+}
 
-
-
-.search-area{
+.search-area {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content:center;
+    justify-content: center;
     width: 100%;
     padding: 1% 0;
     margin: 0 auto;
-    -webkit-box-shadow: 0 2px 4px 0 hsla(0,0%,44.3%,.05);
-    box-shadow: 0 2px 4px 0 hsla(0,0%,44.3%,.05);
-    -webkit-box-shadow: 0 2px 4px 0 hsla(0,0%,44.3%,.05);
-    box-shadow: 0 2px 4px 0 hsla(0,0%,44.3%,.05);
-    -webkit-box-shadow: rgba(0,0,0,.04) 0 7px 8px 0;
-    box-shadow: 0 7px 8px 0 rgba(0,0,0,.04);
+    -webkit-box-shadow: 0 2px 4px 0 hsla(0, 0%, 44.3%, .05);
+    box-shadow: 0 2px 4px 0 hsla(0, 0%, 44.3%, .05);
+    -webkit-box-shadow: 0 2px 4px 0 hsla(0, 0%, 44.3%, .05);
+    box-shadow: 0 2px 4px 0 hsla(0, 0%, 44.3%, .05);
+    -webkit-box-shadow: rgba(0, 0, 0, .04) 0 7px 8px 0;
+    box-shadow: 0 7px 8px 0 rgba(0, 0, 0, .04);
     background: #fff;
-    .search-input-container{ 
+
+    .search-input-container {
         display: flex;
         flex-grow: 1;
-        justify-content:center;
-        .search-input{
+        justify-content: center;
+
+        .search-input {
             justify-content: center;
             background: #eeeeee;
             border: 1px solid #aaa;
@@ -31,10 +36,10 @@
             min-width: 25%;
             border-radius: 3px;
         }
-        .search-btn{
+
+        .search-btn {
             margin-left: 10px;
             min-width: 7%;
         }
     }
 }
-
